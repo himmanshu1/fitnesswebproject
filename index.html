@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Styles for header */
+        header {
+            background-color: white;
+            height: 15vh;
+            border-radius: 12px;
+            width: 200vh;
+            border: 2px solid black;
+        }
+
+        .v {
+            float: left;
+            height: 15vh;
+            margin-left: 100px;
+        }
+
+        div {
+            text-align: center;
+            float: right;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-top: 15px;
+            padding: 15px;
+        }
+
+        a:hover {
+            color: grey;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        /* Styles for main content */
+        .lft {
+            float: left;
+            background-color: azure;
+            width: 110vh;
+            height: 100vh;
+            display:inline-block;
+            text-align:center;
+        }
+
+        pre {
+            margin-top: 100px;
+            font-size: 50px;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        span {
+            color: rgb(34, 172, 34);
+            font-size: 90px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        button {
+            width:150px;
+            height:40px;
+            background-color:black;
+            color:white;
+            border-radius:12px;
+            font-weight: bold;
+            font-family:'roboto';
+            font-size:17px;
+        }
+
+        button:hover {
+            box-shadow:0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .b {
+            color:black;
+            font-size:15px;
+        }
+
+        /* Styles for images */
+        .rght {
+            float:right;
+            width:50vh;
+            height:100vh;
+            background-color:white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-container {
+            position: absolute;
+            animation: scrollImages 45s  infinite; /* Slower scrolling, 40s instead of 20s */
+        }
+
+        .image-container img {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        @keyframes scrollImages {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: -200%; /* Adjusted to -200% to bring back images faster */
+            }
+        }
+
+        /* Styles for coaches section */
+        .coaches {
+            width:200vh;
+            height:50vh;
+        }
+    </style>
+</head>
+<body>
+    
+<header>
+    <img class="v" src="Screenshot 2024-04-12 151806.png">
+    <div>
+        <ul>
+            <li><a href="#" target="">Get a coach</a></li>
+            <li><a href="learn.html"target="-blank">Learn</a></li>
+            <li><a href="ttbe.html" target="-blank">Talk To B-fit Expert</a></li>
+            <li><a href="about.html" target="-blank">about Us</a></li>
+            <li><a href="cntct.html" target="_blank">Contact Us</a></li>
+            <li><a href="bmr.html" target="_blank">Calculate your BMR</a></li>
+        </ul><br>
+        <a href="signup.html" target="-blank"><button style="margin-top:-100px;">Signup</button></a>
+    </div>
+</header>
+<div class="lft">
+    <pre><b>Helping People Live
+ Their</b><span>
+BEST LIVES</span><br><span class="b"> Health on your mind? We have you covered. With more than 300,000+ successful transformations, FITTR is
+     leading the health and fitness revolution in the world!
+</span>    
+</pre>
+   
+  <a href="signup.html " target="-blank" ><button type="submit">Get Healthify!</button></a>
+    
+</div>
+<div class="rght">
+    <div class="image-container">
+        <img  src="Screenshot 2024-04-12 225903.png" alt="Your Image"style="border-radius:15px;">
+        <img src="Screenshot 2024-04-23 095059.png"style="border-radius:20px;">
+        <img src="Screenshot 2024-04-23 095308.png"style="border-radius:20px;">
+        <img src="Screenshot 2024-04-23 095232.png"style="border-radius:20px;width:400px;">
+    </div>
+</div>
+<div class="rght2">
+    
+</div><br>
+
+<div class="coaches">
+    <h1 style="color:black;"> 
+        B-fit Coaches</h1>
+        <img  src="www.jpg" style="width:300px;">
+        <p style="font-weight:20px;">Mr Himanshu Gairola</p>
+</div>
+<footer>
+    
+</footer>
+</body>
+</html>

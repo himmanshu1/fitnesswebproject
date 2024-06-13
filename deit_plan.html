@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Plan</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 2px solid #2c3e50;
+            margin-bottom: 20px;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: none;
+            background-color: #2c3e50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1a242f;
+        }
+
+        #dietPlan {
+            margin-top: 30px;
+            width: 80%;
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #dietPlan h2 {
+            color: #2980b9;
+        }
+
+        #dietPlan ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #dietPlan li {
+            font-size: 1.1em;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #dietPlan li:last-child {
+            border-bottom: none;
+        }
+    </style>
+    <script>
+        function displayDietPlan() {
+            var calorieIntake = localStorage.getItem('maintenanceCalories');
+            if (!calorieIntake) {
+                alert("No calorie intake found. Please calculate your BMR first.");
+                return;
+            }
+            calorieIntake = parseFloat(calorieIntake);
+            var dietPlan;
+
+            // Determine the diet plan based on calorie intake
+            if (calorieIntake >= 1200 && calorieIntake < 1500) {
+                dietPlan = `
+                    <h2>Plan 1: Sample diet plan for 1200-1500 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Oatmeal (1/2 cup) with almond milk (1 cup), bananas (1/2), nuts (1 tbsp)</li>
+                        <li>Lunch: Grilled tofu (3 oz), mixed vegetables (1 cup)</li>
+                        <li>Snack: Greek yogurt (1/2 cup) with mixed berries (1/4 cup)</li>
+                        <li>Dinner: Baked tofu (4 oz), quinoa (1/4 cup), steamed broccoli (1/2 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 1500 && calorieIntake < 1800) {
+                dietPlan = `
+                    <h2>Plan 2: Sample diet plan for 1500-1800 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Smoothie with spinach, kale, apple, and protein powder (1 serving)</li>
+                        <li>Lunch: Chickpea wrap with whole wheat tortilla, lettuce, tomato, and avocado (1 wrap)</li>
+                        <li>Snack: Almonds (1 oz) and an apple (1 medium)</li>
+                        <li>Dinner: Grilled paneer (4 oz) with brown rice (1/2 cup) and asparagus (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 1800 && calorieIntake < 2100) {
+                dietPlan = `
+                    <h2>Plan 3: Sample diet plan for 1800-2100 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Greek yogurt (1 cup) with honey (1 tbsp) and granola (1/4 cup)</li>
+                        <li>Lunch: Quinoa salad with black beans, corn, and avocado (1 serving)</li>
+                        <li>Snack: Carrot sticks (1 cup) with hummus (1/4 cup)</li>
+                        <li>Dinner: Grilled paneer (6 oz), roasted sweet potatoes (1 cup), green beans (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 2100 && calorieIntake < 2400) {
+                dietPlan = `
+                    <h2>Plan 4: Sample diet plan for 2100-2400 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Scrambled tofu (2) with spinach and whole grain toast (2 slices)</li>
+                        <li>Lunch: Chickpea salad with mixed greens, cherry tomatoes, and olive oil dressing (1 serving)</li>
+                        <li>Snack: Mixed nuts (1 oz) and a pear (1 medium)</li>
+                        <li>Dinner: Baked tofu (6 oz) with mashed potatoes (1 cup) and steamed carrots (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 2400 && calorieIntake < 2700) {
+                dietPlan = `
+                    <h2>Plan 5: Sample diet plan for 2400-2700 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Whole grain cereal (1 cup) with milk (1 cup) and a banana (1 medium)</li>
+                        <li>Lunch: Caesar salad with whole grain croutons and parmesan cheese (1 serving)</li>
+                        <li>Snack: Protein bar (1) and an orange (1 medium)</li>
+                        <li>Dinner: Grilled paneer (6 oz) with wild rice (1 cup) and mixed vegetables (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 2700 && calorieIntake < 3000) {
+                dietPlan = `
+                    <h2>Plan 6: Sample diet plan for 2700-3000 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Smoothie with mixed berries, spinach, and protein powder (1 serving)</li>
+                        <li>Lunch: Paneer with broccoli, bell peppers, and brown rice (1 serving)</li>
+                        <li>Snack: Greek yogurt (1 cup) with almonds (1 oz)</li>
+                        <li>Dinner: Grilled tofu (8 oz) with quinoa (1 cup) and mixed greens (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 3000 && calorieIntake < 3200) {
+                dietPlan = `
+                    <h2>Plan 7: Sample diet plan for 3000-3200 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Omelette with 3 eggs, cheese, and vegetables, and whole grain toast (2 slices)</li>
+                        <li>Lunch: Veggie sandwich on whole grain bread with avocado, lettuce, and tomato (1 sandwich)</li>
+                        <li>Snack: Mixed nuts (1 oz) and a protein shake (1 serving)</li>
+                        <li>Dinner: Grilled paneer (8 oz) with mashed potatoes (1 cup) and steamed broccoli (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 3200) {
+                dietPlan = `
+                    <h2>Plan 8: Sample diet plan for 3200+ calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Pancakes (3) with syrup (2 tbsp) and scrambled tofu (3)</li>
+                        <li>Lunch: Vegetable stir-fry with brown rice (1 serving)</li>
+                        <li>Snack: Trail mix (1 cup) and a protein shake (1 serving)</li>
+                        <li>Dinner: Baked tofu (10 oz) with roasted vegetables (2 cups) and quinoa (1 cup)</li>
+                    </ul>
+                `;
+            } else {
+                dietPlan = "<h2>Please enter a valid calorie intake above 1200.</h2>";
+            }
+
+            document.getElementById("dietPlan").innerHTML = dietPlan;
+        }
+
+        window.onload = displayDietPlan;
+    </script>
+</head>
+<body>
+    <h1>Diet Plan Generator</h1>
+    <div id="dietPlan"></div>
+</body>
+</html>

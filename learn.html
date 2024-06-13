@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Exercises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #8e9eab, #eef2f3);
+        }
+        header {
+            background: linear-gradient(to right, #e66465, #9198e5);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .search-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .search-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        .search-button {
+            padding: 10px 20px;
+            background-color: #666;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #555;
+        }
+        section {
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Basic Exercises</h1>
+        <div class="search-container">
+            <input type="text" id="exercise-search" class="search-input" placeholder="Search...">
+            <button class="search-button" onclick="searchExercises()">Search</button>
+        </div>
+    </header>
+    <section id="exercise-results">
+        <!-- Exercise details will be displayed here -->
+    </section>
+    <section id="nutrition-tips">
+        <h2>Nutrition Tips</h2>
+        <p>1. Stay hydrated by drinking plenty of water throughout the day.</p>
+        <p>2. Include a variety of fruits and vegetables in your diet for essential vitamins and minerals.</p>
+        <p>3. Consume lean protein sources such as chicken, fish, tofu, and beans.</p>
+        <p>4. Limit processed foods and sugary snacks, and opt for whole grains instead.</p>
+        <p>5. Practice portion control to avoid overeating and maintain a healthy weight.</p>
+    </section>
+    <section id="fitness-tips">
+        <h2>Fitness Tips</h2>
+        <p>1. Incorporate both cardiovascular exercise and strength training into your fitness routine.</p>
+        <p>2. Set realistic goals and track your progress to stay motivated.</p>
+        <p>3. Find activities you enjoy to make exercise more enjoyable and sustainable.</p>
+        <p>4. Prioritize rest and recovery to prevent injuries and allow your body to heal.</p>
+        <p>5. Listen to your body and adjust your workouts accordingly, taking breaks when needed.</p>
+    </section>
+    <footer>
+        <ul>
+            <li><strong>Upper Body:</strong> Push-ups, Pull-ups</li>
+            <li><strong>Lower Body:</strong> Squats, Lunges</li>
+            <li><strong>Core:</strong> Plank, Crunches</li>
+        </ul>
+        <p>&copy; 2024 Basic Exercises</p>
+    </footer>
+
+    <script>
+        function searchExercises() {
+            var input = document.getElementById("exercise-search").value.toLowerCase();
+            var exercises = [
+                { name: "Push-ups", category: "Upper Body", description: "Push-ups are a great bodyweight exercise that work the chest, shoulders, and triceps." },
+                { name: "Pull-ups", category: "Upper Body", description: "Pull-ups target the back, biceps, and forearms. They are excellent for building upper body strength." },
+                { name: "Squats", category: "Lower Body", description: "Squats are a compound exercise that work the quadriceps, hamstrings, glutes, and lower back." },
+                { name: "Lunges", category: "Lower Body", description: "Lunges target the quadriceps, hamstrings, and glutes. They also help improve balance and stability." },
+                { name: "Plank", category: "Core", description: "The plank is an isometric exercise that strengthens the core muscles, including the abs, back, and shoulders." },
+                { name: "Crunches", category: "Core", description: "Crunches target the rectus abdominis muscle, commonly known as the 'six-pack' muscles." }
+            ];
+            var results = exercises.filter(exercise => exercise.name.toLowerCase().includes(input) || exercise.category.toLowerCase().includes(input));
+
+            var exerciseResults = document.getElementById("exercise-results");
+            exerciseResults.innerHTML = "";
+
+            if (results.length === 0) {
+                exerciseResults.innerHTML = "<p>No exercises found</p>";
+            } else {
+                results.forEach(function(exercise) {
+                    exerciseResults.innerHTML += "<div><h2>" + exercise.name + "</h2><p><strong>Category:</strong> " + exercise.category + "</p><p>" + exercise.description + "</p></div>";
+                });
+            }
+        }
+    </script>
+</body>
+</html>

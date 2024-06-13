@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('gym2.png');
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Added for positioning the sign up link */
+        }
+
+        .login-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            position: relative; /* Added for positioning the sign up link */
+        }
+
+        .login-form h2 {
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            border-color: #3498db;
+        }
+
+        .action-button {
+            width: calc(50% - 8px);
+            padding: 12px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .action-button:hover {
+            background-color: #27ae60;
+        }
+
+        .signup-link {
+            width: calc(50% - 8px);
+            padding: 12px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .signup-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <form class="login-form">
+        <h2>Login</h2>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="action-button">Login</button>
+        <a href="createacc.html" class="signup-link">Sign Up</a>
+    </form>
+</body>
+</html>

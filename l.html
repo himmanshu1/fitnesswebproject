@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B-fit Health and Diet Plan</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styling */
+        header {
+            background-color: white;
+            height: 15vh;
+            border-radius: 12px;
+            width: 100%;
+            border: 2px solid black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            box-sizing: border-box;
+        }
+
+        .v {
+            height: 15vh;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: grey;
+        }
+
+        header button {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        header button:hover {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Main content styling */
+        main {
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+        }
+
+        .lft {
+            flex: 3;
+            background-color: azure;
+            padding: 20px;
+            text-align: center;
+            margin-right: 20px;
+            border-radius: 12px;
+        }
+
+        .lft pre {
+            margin: 0;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .lft span {
+            color: rgb(34, 172, 34);
+            font-size: 2.5em;
+        }
+
+        .lft .b {
+            color: black;
+            font-size: 1em;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .lft button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .lft button:hover {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Right section with images */
+        .rght {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+            border-radius: 12px;
+        }
+
+        .image-container {
+            position: absolute;
+            animation: scrollImages 45s infinite;
+        }
+
+        .image-container img {
+            display: block;
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes scrollImages {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: -200%;
+            }
+        }
+
+        /* Diet Plan Generator styling */
+        #dietPlanSection {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        #dietPlanSection h1 {
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        #dietPlanSection p {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        #dietPlanSection input[type="number"] {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 2px solid #2c3e50;
+            margin-bottom: 20px;
+            width: 300px;
+        }
+
+        #dietPlanSection button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: none;
+            background-color: #2c3e50;
+            color: white;
+            cursor: pointer;
+        }
+
+        #dietPlanSection button:hover {
+            background-color: #1a242f;
+        }
+
+        #dietPlan {
+            margin-top: 30px;
+            width: 80%;
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            margin: 0 auto;
+        }
+
+        #dietPlan h2 {
+            color: #2980b9;
+        }
+
+        #dietPlan ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #dietPlan li {
+            font-size: 1.1em;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #dietPlan li:last-child {
+            border-bottom: none;
+        }
+
+        /* Coaches section */
+        .coaches {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .coaches h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .coaches img {
+            width: 200px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .coaches p {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function displayDietPlan() {
+            var calorieIntake = document.getElementById("calorieInput").value;
+            var dietPlan;
+
+            // Determine the diet plan based on calorie intake
+            if (calorieIntake >= 1200 && calorieIntake < 1500) {
+                dietPlan = `
+                    <h2>Plan 1: Sample diet plan for 1200-1500 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Oatmeal (1/2 cup) with almond milk (1 cup), bananas (1/2), nuts (1 tbsp)</li>
+                        <li>Lunch: Grilled chicken breast (3 oz), mixed vegetables (1 cup)</li>
+                        <li>Snack: Greek yogurt (1/2 cup) with mixed berries (1/4 cup)</li>
+                        <li>Dinner: Baked salmon (4 oz), quinoa (1/4 cup), steamed broccoli (1/2 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 1500 && calorieIntake < 1800) {
+                dietPlan = `
+                    <h2>Plan 2: Sample diet plan for 1500-1800 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Whole grain toast (1 slice), avocado (1/4), poached eggs (1)</li>
+                        <li>Lunch: Grilled chicken breast (4 oz), mixed vegetables (1 cup)</li>
+                        <li>Snack: Greek yogurt (3/4 cup) with mixed berries (1/3 cup)</li>
+                        <li>Dinner: Baked salmon (5 oz), quinoa (1/3 cup), steamed broccoli (3/4 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 1800 && calorieIntake < 2000) {
+                dietPlan = `
+                    <h2>Plan 3: Sample diet plan for 1800-2000 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Whole grain toast (2 slices), avocado (1/4), poached eggs (2)</li>
+                        <li>Lunch: Grilled chicken breast (5 oz), mixed vegetables (1 cup)</li>
+                        <li>Snack: Greek yogurt (1 cup) with mixed berries (1/2 cup)</li>
+                        <li>Dinner: Baked salmon (6 oz), quinoa (1/2 cup), steamed broccoli (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 2000 && calorieIntake < 2200) {
+                dietPlan = `
+                    <h2>Plan 4: Sample diet plan for 2000-2200 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Oatmeal (3/4 cup) with almond milk (1 cup), bananas (1/2), nuts (2 tbsp)</li>
+                        <li>Lunch: Turkey and avocado wrap, sweet potato fries (1 cup)</li>
+                        <li>Snack: Hummus (1/4 cup) with carrot sticks (1 cup)</li>
+                        <li>Dinner: Stir-fried tofu (6 oz), brown rice (1 cup), mixed vegetables (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 2200 && calorieIntake < 2400) {
+                dietPlan = `
+                    <h2>Plan 5: Sample diet plan for 2200-2400 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Whole grain toast (2 slices), peanut butter (2 tbsp), banana (1)</li>
+                        <li>Lunch: Grilled chicken breast (6 oz), quinoa (1/2 cup), mixed vegetables (1 cup)</li>
+                        <li>Snack: Cottage cheese (1 cup) with pineapple (1/2 cup)</li>
+                        <li>Dinner: Baked cod (6 oz), sweet potato (1 medium), asparagus (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 2400 && calorieIntake < 2600) {
+                dietPlan = `
+                    <h2>Plan 6: Sample diet plan for 2400-2600 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Scrambled eggs (2), whole wheat toast (2 slices), avocado (1/4)</li>
+                        <li>Lunch: Grilled salmon (6 oz), brown rice (1 cup), mixed vegetables (1 cup)</li>
+                        <li>Snack: Greek yogurt (1 cup) with honey (1 tbsp) and almonds (1/4 cup)</li>
+                        <li>Dinner: Beef stir-fry with broccoli, carrots, and bell peppers (1 serving)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 2600 && calorieIntake < 2800) {
+                dietPlan = `
+                    <h2>Plan 7: Sample diet plan for 2600-2800 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Protein pancakes (2) with maple syrup (2 tbsp), strawberries (1 cup)</li>
+                        <li>Lunch: Grilled chicken breast (7 oz), quinoa (1 cup), mixed vegetables (1 cup)</li>
+                        <li>Snack: Cottage cheese (1 cup) with mixed nuts (1/3 cup)</li>
+                        <li>Dinner: Turkey meatballs (8 oz) with whole wheat pasta (1 cup) and marinara sauce (1/2 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 2800 && calorieIntake < 3000) {
+                dietPlan = `
+                    <h2>Plan 8: Sample diet plan for 2800-3000 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Breakfast burrito with eggs, black beans, avocado, and salsa (1 serving)</li>
+                        <li>Lunch: Grilled steak (8 oz), sweet potato (1 large), mixed vegetables (1 cup)</li>
+                        <li>Snack: Protein smoothie with spinach, banana, protein powder, and almond milk (1 serving)</li>
+                        <li>Dinner: Chicken fajitas with bell peppers, onions, whole wheat tortillas, and guacamole (1 serving)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 3000 && calorieIntake < 3200) {
+                dietPlan = `
+                    <h2>Plan 9: Sample diet plan for 3000-3200 calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Breakfast bowl with scrambled eggs, quinoa, avocado, and salsa (1 serving)</li>
+                        <li>Lunch: Grilled shrimp (10 oz), brown rice (1 cup), mixed vegetables (1 cup)</li>
+                        <li>Snack: Protein bar (1) with apple slices (1 cup)</li>
+                        <li>Dinner: Baked chicken thighs (8 oz) with roasted vegetables (1 cup) and quinoa (1 cup)</li>
+                    </ul>
+                `;
+            } else if (calorieIntake >= 3200) {
+                dietPlan = `
+                    <h2>Plan 10: Sample diet plan for 3200+ calories/day</h2>
+                    <ul>
+                        <li>Breakfast: Smoothie with spinach, kale, banana, protein powder, and almond milk (1 serving)</li>
+                        <li>Lunch: Grilled chicken breast (10 oz), sweet potato fries (1 cup), mixed vegetables (1 cup)</li>
+                        <li>Snack: Greek yogurt (1 cup) with honey (2 tbsp) and granola (1/4 cup)</li>
+                        <li>Dinner: Beef stir-fry with broccoli, carrots, bell peppers, and brown rice (1 cup)</li>
+                    </ul>
+                `;
+            } else {
+                dietPlan = "<h2>Please enter a valid calorie intake above 1200.</h2>";
+            }
+
+            document.getElementById("dietPlan").innerHTML = dietPlan;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="v">
+            <img src="B-fit.jpg" alt="B-fit" style="height: 100%;">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Workout</a></li>
+                <li><a href="#">Meal</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <button>Sign up</button>
+    </header>
+
+    <main>
+        <div class="lft">
+            <pre>
+                Say Hello to Your
+                Personal
+                <span>Health</span> and
+                <span>Fitness</span> Partner
+            </pre>
+            <span class="b">Easy-to-follow health and diet plans, tailored for you</span>
+            <button>Get Started</button>
+        </div>
+
+        <div class="rght">
+            <div class="image-container">
+                <img src="image1.jpg" alt="Diet Image 1">
+                <img src="image2.jpg" alt="Diet Image 2">
+                <img src="image3.jpg" alt="Diet Image 3">
+            </div>
+        </div>
+    </main>
+
+    <section id="dietPlanSection">
+        <h1>Diet Plan Generator</h1>
+        <p>Enter your daily calorie intake:</p>
+        <input type="number" id="calorieInput" placeholder="e.g. 2000">
+        <button onclick="displayDietPlan()">Generate Diet Plan</button>
+        <div id="dietPlan"></div>
+    </section>
+
+    <section class="coaches">
+        <h1>Meet Our Coaches</h1>
+        <img src="coach.jpg" alt="Coach">
+        <p>Our expert coaches are here to guide you every step of the way.</p>
+    </section>
+
+    <footer>
+        &copy; 2024 B-fit. All rights reserved.
+    </footer>
+</body>
+</html>

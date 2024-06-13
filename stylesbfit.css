@@ -1,0 +1,103 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    display:inline-block;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+input[type="number"] {
+    width: calc(100% - 24px);
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#dietPlan {
+    margin-top: 20px;
+}
+
+.diet-plan {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.diet-plan h2 {
+    margin-top: 0;
+    color: #4CAF50;
+}
+
+.diet-plan ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.diet-plan li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.diet-plan li:last-child {
+    border-bottom: none;
+}
+
+.diet-plan li:before {
+    content: "•";
+    color: #4CAF50;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+@media screen and (max-width: 480px) {
+    input[type="number"], button {
+        width: 100%;
+    }
+}

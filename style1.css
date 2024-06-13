@@ -1,0 +1,12 @@
+body{
+    text-align:center;
+    align-items: center;
+    display:flex;
+}
+table{
+    border:2px solid black;
+   color:yellow;
+   backgorund-color:lightblue;
+   text-align:center;
+   
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+            color: #fff;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        header {
+            background-color: #2e004f;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: slideInDown 1s ease-out;
+        }
+
+        .calculator-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+            background-color: #3a1c71;
+        }
+
+        .calculator {
+            background-color: #522e75;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 320px;
+            animation: popIn 1s ease-out;
+        }
+
+        .calculator h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffaf7b;
+        }
+
+        .calculator label {
+            display: block;
+            margin-bottom: 10px;
+            color: #d76d77;
+        }
+
+        .calculator input[type="number"],
+        .calculator select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        .calculator button {
+            width: 100%;
+            background-color: #ffaf7b;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .calculator button:hover {
+            background-color: #d76d77;
+        }
+
+        footer {
+            background-color: #2e004f;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            animation: slideInUp 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Know Your BMR and Get Your Diet Plan</h1>
+</header>
+
+<div class="calculator-container">
+    <div class="calculator">
+        <h2>Calculate Your BMR</h2>
+        <label for="weight">Enter your weight (in kg): </label>
+        <input type="number" id="weight">
+        <label for="height">Enter your height (in cm): </label>
+        <input type="number" id="height">
+        <label for="age">Enter your age: </label>
+        <input type="number" id="age">
+        <label for="gender">Select your gender: </label>
+        <select id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <label for="activity-level">Select your activity level: </label>
+        <select id="activity-level">
+            <option value="sedentary">Sedentary (little or no exercise)</option>
+            <option value="lightly-active">Lightly active (light exercise/sports 1-3 days a week)</option>
+            <option value="moderately-active">Moderately active (moderate exercise/sports 3-5 days a week)</option>
+            <option value="very-active">Very active (hard exercise/sports 6-7 days a week)</option>
+            <option value="extra-active">Extra active (very hard exercise/sports & physical job)</option>
+        </select>
+        <button onclick="calculateCalories()">Calculate</button>
+        <p id="result"></p>
+    </div>
+</div>
+
+<script>
+    function calculateCalories() {
+        var weight = parseFloat(document.getElementById('weight').value);
+        var height = parseFloat(document.getElementById('height').value);
+        var age = parseFloat(document.getElementById('age').value);
+        var gender = document.getElementById('gender').value;
+        var activityLevel = document.getElementById('activity-level').value;
+
+        var bmr;
+        if (gender === 'male') {
+            bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+        } else {
+            bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+        }
+
+        var activityFactors = {
+            'sedentary': 1.2,
+            'lightly-active': 1.375,
+            'moderately-active': 1.55,
+            'very-active': 1.725,
+            'extra-active': 1.9
+        };
+
+        var maintenanceCalories = bmr * activityFactors[activityLevel];
+        document.getElementById('result').innerText = "Your BMR: " + bmr.toFixed(2) + " kcal/day\nYour maintenance calories: " + maintenanceCalories.toFixed(2) + " kcal/day";
+
+        setTimeout(function() {
+            var wantsDietPlan = confirm("Would you like to get a diet plan?");
+            if (wantsDietPlan) {
+                localStorage.setItem('maintenanceCalories', maintenanceCalories);
+                window.location.href = "deit_plan.html";
+            }
+        }, 1000);
+    }
+</script>
+
+<footer>
+    <p>&copy; 2024 Calorie Calculator</p>
+</footer>
+</body>
+</html>
